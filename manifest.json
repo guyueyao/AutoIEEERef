@@ -1,0 +1,25 @@
+{
+  "manifest_version":2,
+
+  "name":"AutoReference",
+  "description":"自动从Web of Science页面导出IEEE 引用格式",
+  "version":"1.0",
+  "content_scripts": [
+    {
+      "js": ["content.js"],
+      "matches": [
+        "https://www.webofscience.com/*"
+      ],
+      "run_at": "document_start"
+    }
+  ],
+  "permissions":[
+    "http://*/*",
+    "https://*/*",
+    "tabs"
+  ],
+  "browser_action":{
+    "default_icon":"myicon.png",
+    "default_popup":"popup.html"
+  }
+}
