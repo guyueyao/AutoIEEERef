@@ -1,7 +1,7 @@
 {
-  "manifest_version":2,
+  "manifest_version":3,
 
-  "name":"AutoReference",
+  "name":"AutoIEEERef",
   "description":"自动从Web of Science页面导出IEEE 引用格式",
   "version":"1.0",
   "content_scripts": [
@@ -18,8 +18,19 @@
     "https://*/*",
     "tabs"
   ],
-  "browser_action":{
-    "default_icon":"myicon.png",
-    "default_popup":"popup.html"
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "myicon.png",
+      "32": "myicon.png",
+      "48": "myicon.png",
+      "128": "myicon.png"
+    }
+  },
+  "icons": {
+    "16": "myicon.png",
+    "32": "myicon.png",
+    "48": "myicon.png",
+    "128": "myicon.png"
   }
 }

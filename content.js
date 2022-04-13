@@ -1,5 +1,30 @@
 loadedflag=false
 citinginfo=null
+
+function revise_journal_title(jtitle){
+    var jtitles=jtitle.split(' ')
+    var jt
+    var result=""
+    var preposition=["IN","ON","FOR","AT","AND","OR","OF","BY","TO","AS"]
+    var institution=["IEEE",'ACM','SPIE','CCF']
+    var spatialwors=["CNN","VQA",'IQA','R-CNN',]
+    for(var j=0;j<jtitles.length;j++){
+        jt=jtitles[j]
+        if (institution.includes(jt)||spatialwors.includes(jt)||jt.includes("("))
+            ;
+        else if(preposition.includes(jt))
+            jt=jt.toLowerCase()
+        else{
+            jt0=jt.substring(0,1)
+            jtend=jt.substring(1)
+            jt=jt0+jtend.toLowerCase()
+        }
+        result=result+jt
+        if (j<jtitles.length-1)
+            result=result+' '
+    }
+    return result
+}
 function getcite(){
     var a=document.getElementById('SumAuthTa-MainDiv-author-en')
     a = a.getElementsByClassName('mat-tooltip-trigger authors value ng-star-inserted')
@@ -81,8 +106,10 @@ function getcite(){
         else
             citing=citing+', '+first_name[0]+'. '+second_name
     }
-    citing=citing+',"'+paper_title+'," '
+    paper_title=revise_journal_title(paper_title)
 
+    citing=citing+',"'+paper_title+'," '
+    journal_title=revise_journal_title(journal_title)
     if (isConf){
         citing=citing+'in '+journal_title+', '+data_month+'. '+data_year+', pp.'+pp+'.'
     }else {
@@ -106,7 +133,7 @@ console.log('contens injected !!!!!!!!!!!!!!!!!!!!!')
 
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendMessage) {
-        if (request.greeting === true) {
+        if (request.action === true) {
             citing=getcite()
             sendMessage(citing);
         }
@@ -116,19 +143,3 @@ chrome.runtime.onMessage.addListener(
 
     });
 
-
-// chrome.runtime.onConnect.addListener(function(port) {
-//     port.onMessage.addListener(function(msg) {
-//         console.log('message received')
-//         if (msg.require === true){
-//             if (loadedflag){
-//                 console.log(citinginfo)
-//                 port.postMessage({citeinfo: citinginfo});
-//             }
-//             else{
-//             citing=getcite()
-//             port.postMessage({citeinfo: citing});
-//             }
-//         }
-//     });
-// });
