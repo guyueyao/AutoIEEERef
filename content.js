@@ -60,7 +60,16 @@ function getcite(){
         data_year=d[1].replace(' ','')
         data_month=d[0].split(' ')[0]
         data_month=data_month.substring(0,1)+data_month.substring(1,3).toLowerCase()
-        pp=document.getElementById('FullRTa-pageNo').innerText
+        pp=document.getElementById('FullRTa-pageNo')
+        volume=document.getElementById('FullRTa-volume')
+        if (volume)
+            volume=volume.innerText
+        else
+            volume=null
+        if (pp)
+            pp=pp.innerText
+        else
+            pp=null
     }else{
         d=document.getElementById('FullRTa-pubdate').innerText
         d=d.split(' ')
@@ -111,7 +120,14 @@ function getcite(){
     citing=citing+',"'+paper_title+'," '
     journal_title=revise_journal_title(journal_title)
     if (isConf){
-        citing=citing+'in '+journal_title+', '+data_month+'. '+data_year+', pp.'+pp+'.'
+        citing=citing+'in '+journal_title+', '+data_month+'. '+data_year
+        if (volume)
+            citing=citing+', vol.'+volume
+        if (pp)
+            citing=citing+', pp.'+pp+'.'
+        else
+            citing=citing+'.'
+
     }else {
         citing=citing+journal_title
         if (volume)

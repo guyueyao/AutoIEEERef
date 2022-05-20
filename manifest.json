@@ -14,8 +14,6 @@
     }
   ],
   "permissions":[
-    "http://*/*",
-    "https://*/*",
     "tabs"
   ],
   "action": {
