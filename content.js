@@ -32,10 +32,10 @@ function getcite(){
     authers=[]
     var journal_title
     for (var i=0;i<auther_num;i++) {
-        var query_id = "SumAuthTa-DisplayName-author-en-" + i.toString()
+        var query_id = "SumAuthTa-FrAuthStandard-author-en-" + i.toString()
         a = document.getElementById(query_id)
         if (a) {
-            names = a.innerText.replace(' ', '')
+            names = a.innerText.replace(' (', '').replace(') ', '')
             authers.push(names)
         }
     }
@@ -104,16 +104,24 @@ function getcite(){
 
     for (var i=0;i<authers.length;i++){
         names=authers[i]
-        names=names.split(',')
+        names=names.split(', ')
         first_name=names[1]
         second_name=names[0]
+        first_names=first_name.split(' ')
+        first_name=''
+        for (var j=0;j<first_names.length;j++){
+            tmp=first_names[j]
+            console.log(tmp)
+            first_name=first_name+tmp.substr(0, 1)+'. '
+        }
+
 
         if (i===0 || authers.length===1)
-        citing=citing+first_name[0]+'. '+second_name
+        citing=citing+first_name+second_name
         else if(i===authers.length-1)
-            citing=citing+' and '+first_name[0]+'. '+second_name
+            citing=citing+' and '+first_name+second_name
         else
-            citing=citing+', '+first_name[0]+'. '+second_name
+            citing=citing+', '+first_name+second_name
     }
     paper_title=revise_journal_title(paper_title)
 
