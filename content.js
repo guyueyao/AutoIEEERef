@@ -6,7 +6,7 @@ function revise_journal_title(jtitle){
     var jt
     var result=""
     var preposition=["IN","ON","FOR","AT","AND","OR","OF","BY","TO","AS"]
-    var institution=["IEEE",'ACM','SPIE','CCF']
+    var institution=["IEEE",'ACM','SPIE','CCF','CVF','IEEE/CVF']
     var spatialwors=["CNN","VQA",'IQA','R-CNN',]
     for(var j=0;j<jtitles.length;j++){
         jt=jtitles[j]
@@ -83,7 +83,7 @@ function getcite(){
             volume=volume.innerText
         else
             volume=null
-        issue=document.getElementById('FullRTa-issueLabel')
+        issue=document.getElementById('FullRTa-issue')
         if (issue)
             issue=issue.innerText
         else
