@@ -6,6 +6,7 @@ function getcite(){
     a=a[0].outerText
     var authers=a.split(', ')
     auther_cite=''
+    auther_citev2=''
 
     for (var i=0;i<authers.length;i++){
         auther=authers[i]
@@ -24,12 +25,27 @@ function getcite(){
             }
         }
     }
+
+    for (var i=0;i<authers.length;i++){
+        auther=authers[i]
+        if (authers.length>1 && i===authers.length-1)
+            auther_citev2=auther_citev2+'and '
+
+            if (i<authers.length-1)
+                auther_citev2=auther_citev2+auther+', '
+            else
+                auther_citev2=auther_citev2+auther+'. '
+    }
+
+
     var title=document.getElementsByClassName('title mathjax')
-    title=title[0].innerText+'," arXiv preprint '
+    titlev2=title[0].innerText+'. '
+    title=title[0].innerText+'," '
     var arxivid=document.getElementsByClassName('arxivid')
-    arxivid=arxivid[0].innerText.split(' ')[0]
+    arxivid=arxivid[0].innerText.split(' ')[0]+'.'
     var cited=auther_cite+title+arxivid
-    return cited
+    var citedv2=auther_citev2+titlev2+'arXiv preprint '+arxivid
+    return cited+'#'+citedv2
 }
 console.log('content2 injected !!!!!!!!!!!!!!!!!!!!!')
 

@@ -9,7 +9,9 @@ chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
         if (test1 === 'https://www.webofscience.com/wos/alldb/full-record/'|| test3=== 'https://arxiv.org/abs/') {
             console.log('innnnnn')
                 chrome.tabs.sendMessage(tabs[0].id, {action: true}, function (response) {
-                    document.getElementById("infobox").value = response;
+
+                    document.getElementById("infobox").value = response.split('#')[0];
+                    document.getElementById("infoboxv2").value = response.split('#')[1];
                 });
 
 

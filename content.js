@@ -102,6 +102,10 @@ function getcite(){
     //组合
     citing=''
 
+    //CVPR格式
+    citingv2=''
+
+    //IEEE
     for (var i=0;i<authers.length;i++){
         names=authers[i]
         names=names.split(', ')
@@ -111,7 +115,6 @@ function getcite(){
         first_name=''
         for (var j=0;j<first_names.length;j++){
             tmp=first_names[j]
-            console.log(tmp)
             first_name=first_name+tmp.substr(0, 1)+'. '
         }
 
@@ -123,32 +126,62 @@ function getcite(){
         else
             citing=citing+', '+first_name+second_name
     }
+    //CVPR
+    for (var i=0;i<authers.length;i++){
+        names=authers[i]
+        names=names.split(', ')
+        first_name=names[1]
+        second_name=names[0]
+
+        if (i===0 || authers.length===1)
+            citingv2=citingv2+first_name+' '+second_name
+        else if(i===authers.length-1)
+            citingv2=citingv2+' and '+first_name+' '+second_name
+        else
+            citingv2=citingv2+', '+first_name+' '+second_name
+    }
+
+
     paper_title=revise_journal_title(paper_title)
 
     citing=citing+',"'+paper_title+'," '
+    citingv2=citingv2+'. '+paper_title+'. '
     journal_title=revise_journal_title(journal_title)
     if (isConf){
         citing=citing+'in '+journal_title+', '+data_month+'. '+data_year
+        citingv2=citingv2+'In '+journal_title+', '
         if (volume)
             citing=citing+', vol.'+volume
-        if (pp)
-            citing=citing+', pp.'+pp+'.'
+        if (pp) {
+            citing = citing + ', pp.' + pp + '.'
+            citingv2=citingv2+'pages '+pp
+        }
+
         else
             citing=citing+'.'
+            citingv2=citingv2+', '+data_year+'.'
 
     }else {
         citing=citing+journal_title
-        if (volume)
+        citingv2=citingv2+journal_title
+        if (volume){
             citing=citing+', vol.'+volume
-        if(issue)
-            citing=citing+', no.'+volume
-        if(pp)
+            citingv2=citingv2+', '+volume}
+        if(issue){
+            citing=citing+', no.'+issue
+            citingv2=citingv2+'('+issue+')'}
+        if(pp){
             citing=citing+', pp.'+pp
-        if(art_no)
+            citingv2=citingv2+':'+pp}
+        if(art_no){
             citing=citing+', art no.'+art_no
+            citingv2=citingv2+':'+pp}
         citing=citing+', '+data_ym+'.'
+        citingv2=citingv2+', '+data_year+'.'
     }
-    return citing
+    console.log(citingv2)
+    return citing+'#'+citingv2
+
 }
 console.log('contens injected !!!!!!!!!!!!!!!!!!!!!')
 
