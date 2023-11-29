@@ -42,9 +42,15 @@ function getcite(){
     titlev2=title[0].innerText+'. '
     title=title[0].innerText+'," '
     var arxivid=document.getElementsByClassName('arxivid')
-    arxivid=arxivid[0].innerText.split(' ')[0]+'.'
-    var cited=auther_cite+title+arxivid
-    var citedv2=auther_citev2+titlev2+'arXiv preprint '+arxivid
+    arxivid=arxivid[0].innerText.split(' ')[0]+', '
+
+    var sub_line=document.getElementsByClassName('submission-history')
+    sub_line=sub_line[0].outerText
+    var reg = /\d{4}/;
+    sub_line=sub_line.match(reg)
+    var year=sub_line[0]
+    var cited=auther_cite+title+arxivid+year+'.'
+    var citedv2=auther_citev2+titlev2+'arXiv preprint '+arxivid+year+'.'
     return cited+'#'+citedv2
 }
 console.log('content2 injected !!!!!!!!!!!!!!!!!!!!!')
