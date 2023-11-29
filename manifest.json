@@ -9,7 +9,7 @@
       "js": ["content.js"],
       "matches": [
         "https://www.webofscience.com/*",
-        "https://webofscience.clarivate.cn/"
+        "https://webofscience.clarivate.cn/*"
       ],
       "run_at": "document_start"
     },
