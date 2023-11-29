@@ -142,7 +142,7 @@ function getcite(){
     }
 
 
-    paper_title=revise_journal_title(paper_title)
+    //paper_title=revise_journal_title(paper_title)
 
     citing=citing+',"'+paper_title+'," '
     citingv2=citingv2+'. '+paper_title+'. '
