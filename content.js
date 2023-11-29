@@ -151,7 +151,7 @@ function getcite(){
         citing=citing+'in '+journal_title+', '+data_month+'. '+data_year
         citingv2=citingv2+'In '+journal_title+', '
         if (volume)
-            citing=citing+', vol.'+volume
+            citing=citing+', vol. '+volume
         if (pp) {
             citing = citing + ', pp.' + pp + '.'
             citingv2=citingv2+'pages '+pp
@@ -165,18 +165,18 @@ function getcite(){
         citing=citing+journal_title
         citingv2=citingv2+journal_title
         if (volume){
-            citing=citing+', vol.'+volume
+            citing=citing+', vol. '+volume
             citingv2=citingv2+', '+volume}
         if(issue){
-            citing=citing+', no.'+issue
+            citing=citing+', no. '+issue
             citingv2=citingv2+'('+issue+')'}
         if(pp){
-            citing=citing+', pp.'+pp
-            citingv2=citingv2+':'+pp}
+            citing=citing+', pp. '+pp
+            citingv2=citingv2+': '+pp}
         if(art_no){
-            citing=citing+', art no.'+art_no
-            citingv2=citingv2+':'+pp}
-        citing=citing+', '+data_ym+'.'
+            citing=citing+', Art no. '+art_no
+            citingv2=citingv2+': '+art_no}
+        citing=citing+', '+data_year+'.'
         citingv2=citingv2+', '+data_year+'.'
     }
     console.log(citingv2)
