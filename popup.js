@@ -6,8 +6,9 @@ chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
         test1 = test.substring(0, 51)
         test2 = test.substring(0, 29)
         test3= test.substring(0, 22)
-        if (test1 === 'https://www.webofscience.com/wos/alldb/full-record/'|| test3=== 'https://arxiv.org/abs/') {
-            console.log('innnnnn')
+        test4= test.substring(0, 34)
+        test5= test.substring(0, 56)
+        if (test1 === 'https://www.webofscience.com/wos/alldb/full-record/'|| test3=== 'https://arxiv.org/abs/' || test5==='https://webofscience.clarivate.cn/wos/alldb/full-record/') {
                 chrome.tabs.sendMessage(tabs[0].id, {action: true}, function (response) {
 
                     document.getElementById("infobox").value = response.split('#')[0];
@@ -16,7 +17,7 @@ chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
 
 
 
-        } else if (test2 === 'https://www.webofscience.com/') {
+        } else if (test2 === 'https://www.webofscience.com/' || test4==='https://webofscience.clarivate.cn/' ) {
             document.getElementById("infobox").value = "Please entry the literature detail page";
         } else {
             chrome.tabs.create({url: 'https://www.webofscience.com/'});
