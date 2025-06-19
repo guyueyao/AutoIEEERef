@@ -27,7 +27,7 @@ function revise_journal_title(jtitle){
 }
 function getcite(){
     var a=document.getElementById('SumAuthTa-MainDiv-author-en')
-    a = a.getElementsByClassName('mat-tooltip-trigger authors value ng-star-inserted')
+    a = a.getElementsByClassName('mat-tooltip-trigger value ng-star-inserted')
     auther_num=a.length
     authers=[]
     var journal_title
@@ -93,7 +93,7 @@ function getcite(){
             pp=pp.innerText
         else
             pp=null
-        art_no=document.querySelector('span#FullRTa-articleNumberLabel')
+        art_no=document.querySelector('span#FullRTa-articleNumberValue')
         if (art_no)
             art_no=art_no.innerText
         else
@@ -176,7 +176,7 @@ function getcite(){
         if(art_no){
             citing=citing+', Art no. '+art_no
             citingv2=citingv2+': '+art_no}
-        citing=citing+', '+data_year+'.'
+        citing=citing+', '+data_ym+'.'
         citingv2=citingv2+', '+data_year+'.'
     }
     console.log(citingv2)
