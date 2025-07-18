@@ -23,11 +23,12 @@ function revise_journal_title(jtitle){
         if (j<jtitles.length-1)
             result=result+' '
     }
+    result=result.replace('arrow_drop_down','')
     return result
 }
 function getcite(){
     var a=document.getElementById('SumAuthTa-MainDiv-author-en')
-    a = a.getElementsByClassName('mat-tooltip-trigger value ng-star-inserted')
+    a = a.getElementsByClassName('value ng-star-inserted')
     auther_num=a.length
     authers=[]
     var journal_title
